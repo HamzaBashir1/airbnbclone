@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  height: 100%;
+}
+
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}
+
+.rdrMonth {
+  width: 100% !important;
+}
+
+.rdrCalendarWrapper {
+  font-size: 16px !important;
+  width: 100% !important;
+}
+
+@layer components{
+  .container{
+      @apply max-w-full w-[1440px] px-5 mx-auto;
+  }
+}
+
+@media only screen and (max-width: 1024px){
+  .container{
+      @apply w-full;
+  }
+
+  section{
+      @apply py-[35px];
+  }
+}
