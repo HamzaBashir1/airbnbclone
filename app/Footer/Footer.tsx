@@ -1,10 +1,17 @@
+"use client"
+import { FC } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
-import putko from '../../public/images/putko_.png';
+import putko from '../../public/images/putko.png';
 import { RiLinkedinFill } from 'react-icons/ri';
 import { AiFillYoutube, AiFillGithub, AiOutlineInstagram } from 'react-icons/ai';
 
-const socialLinks = [
+interface SocialLink {
+  path: string;
+  icon: JSX.Element;
+}
+
+const socialLinks: SocialLink[] = [
   {
     path: "https://www.youtube.com/",
     icon: <AiFillYoutube className='group-hover:text-white w-4 h-5' />,
@@ -23,63 +30,68 @@ const socialLinks = [
   },
 ];
 
-const quickLink01 = [
+interface QuickLink {
+  path: string;
+  display: string;
+}
+
+const quickLink01: QuickLink[] = [
   {
-    path: "/home",
+    path: "/",
     display: "Putko your home",
   },
   {
-    path: "/About",
+    path: "/AirCover-for-Hosts",
     display: "AirCover for Hosts",
   },
   {
-    path: "/services",
+    path: "/Hosting-resources",
     display: "Hosting resources",
   },
   {
-    path: "/",
+    path: "/Hosting-responsibly",
     display: "Hosting responsibly",
   },
   {
-    path: "/",
+    path: "/airbnb-friendly",
     display: "Putko-friendly apartments",
   },
-  {
-    path: "/",
-    display: "Join a free Hosting class",
-  },
+  // {
+  //   path: "/",
+  //   display: "Join a free Hosting class",
+  // },
 ];
 
-const quickLink02 = [
-  {
-    path: "/find-a-doctor",
-    display: "Newsroom",
-  },
-  {
-    path: "/",
-    display: "New features",
-  },
-  {
-    path: "/",
-    display: "Careers",
-  },
-  {
-    path: "/",
-    display: "Investors",
-  },
-  {
-    path: "/",
-    display: "Putko.org emergency stays",
-  },
-];
+// const quickLink02: QuickLink[] = [
+//   {
+//     path: "/find-a-doctor",
+//     display: "Newsroom",
+//   },
+//   {
+//     path: "/",
+//     display: "New features",
+//   },
+//   {
+//     path: "/",
+//     display: "Careers",
+//   },
+//   {
+//     path: "/",
+//     display: "Investors",
+//   },
+//   {
+//     path: "/",
+//     display: "Putko.org emergency stays",
+//   },
+// ];
 
-const quickLink03 = [
+const quickLink03: QuickLink[] = [
   {
-    path: "/help-center",
+    path: "/help",
     display: "Help Center",
   },
   {
-    path: "/contact",
+    path: "/aircover",
     display: "AirCover",
   },
   {
@@ -87,20 +99,20 @@ const quickLink03 = [
     display: "Anti-discrimination",
   },
   {
-    path: "/contact",
+    path: "/accessibility",
     display: "Disability support",
   },
   {
-    path: "/contact",
+    path: "/Cancellation-options",
     display: "Cancellation options",
   },
   {
-    path: "/contact",
+    path: "/Report-neighborhood",
     display: "Report neighborhood concern",
   },
 ];
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const year = new Date().getFullYear();
   return (
     <footer className='pb-16 pt-10'>
@@ -109,7 +121,7 @@ const Footer = () => {
           <div>
             <Image src={putko} alt='' />
             <p className='text-[16px] leading-7 font-[400] text-textColor mt-4'>
-              Copywright © {year} developed by Hamza all right reserved.
+              Copyright © {year} developed by Hamza all right reserved.
             </p>
 
             <div className='flex items-center gap-3 mt-4'>
@@ -135,7 +147,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          <div>
+          {/* <div>
             <h2 className='text-[20px] leading-[30px] font-[700] mb-6 text-headingColor'>
               Putko
             </h2>
@@ -144,12 +156,12 @@ const Footer = () => {
               {quickLink02.map((item, index) => (
                 <li key={index} className='mb-4'>
                   <Link href={item.path} className='text-[16px] leading-7 font-[400] text-textColor'>
-                    {item.display}
+                   {item.display}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
           <div>
             <h2 className='text-[20px] leading-[30px] font-[700] mb-6 text-headingColor'>
               Support

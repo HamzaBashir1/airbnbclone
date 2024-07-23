@@ -243,7 +243,7 @@ const RentModal: FC<RentModalProps> = ({}) => {
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      title="Airbnb your home!"
+      title="Putko your home!"
       body={bodyContent}
     />
   )
