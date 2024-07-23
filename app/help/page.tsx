@@ -234,7 +234,7 @@ const Page = () => {
             </div>
             <div className='flex flex-col w-full lg:w-1/3 xl:w-1/3'>
                 <h1 className='underline font-bold text-sm md:text-base lg:text-lg xl:text-xl'>Refund your guest</h1>
-                <p className='text-xs md:text-sm lg:text-base xl:text-lg'>It can happen to the best of Hosts: The wifi is a no-show, or the hot tub isn't hot. If something...</p>
+                <p className='text-xs md:text-sm lg:text-base xl:text-lg'>It can happen to the best of Hosts: The wifi is a no-show, or the hot tub isn’t hot. If something...</p>
                 <div className='border border-solid mt-12'></div>
             </div>
         </div>
@@ -343,7 +343,7 @@ const Page = () => {
             </div>
             <div className='flex flex-col w-full lg:w-1/3 xl:w-1/3 mr-5'>
                 <h1 className='underline font-bold text-sm md:text-base lg:text-lg xl:text-xl'>How do payouts for experiences work?</h1>
-                <p className='text-xs md:text-sm lg:text-base xl:text-lg'>You'll need to set up your preferred payout method on your Airbnb profile. Learn how to..</p>
+                <p className='text-xs md:text-sm lg:text-base xl:text-lg'>You’ll need to set up your preferred payout method on your Airbnb profile. Learn how to..</p>
                 <div className='border border-solid mt-4'></div>
             </div>
             <div className='flex flex-col w-full lg:w-1/3 xl:w-1/3'>
@@ -426,7 +426,7 @@ const Page = () => {
             </div>
             <div className='flex flex-col w-full lg:w-1/3 xl:w-1/3'>
                 <h1 className='underline font-bold text-sm md:text-base lg:text-lg xl:text-xl'>How to manage company travel</h1>
-                <p className='text-xs md:text-sm lg:text-base xl:text-lg'>We've made it easy to manage business travel on Airbnb, with a specialized Airbnb for Work...</p>
+                <p className='text-xs md:text-sm lg:text-base xl:text-lg'>We’ve made it easy to manage business travel on Airbnb, with a specialized Airbnb for Work...</p>
                 <div className='border border-solid mt-12'></div>
             </div>
         </div>

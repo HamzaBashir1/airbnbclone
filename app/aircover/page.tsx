@@ -28,7 +28,7 @@ const Page = () => {
         />
       </div>
 
-      <p className='mb-4'>Every booking comes with AirCover for guests. If there’s a serious issue with your Putko that your Host can't resolve, we’ll help you find a similar place, depending on availability at comparable pricing. If a similar place isn’t available or you’d prefer not to rebook, we’ll give you a full or partial refund.</p>
+      <p className='mb-4'>Every booking comes with AirCover for guests. If there’s a serious issue with your Putko that your Host can’t resolve, well help you find a similar place, depending on availability at comparable pricing. If a similar place isn’t available or you’d prefer not to rebook, we’ll give you a full or partial refund.</p>
 
       <p className='mb-8'>
           If anything comes up, your Host is your best point of contact; it’s likely they’ll be able to fix it. You can  
@@ -80,7 +80,7 @@ const Page = () => {
 
       <h1 className='font-bold text-3xl mb-4'> 24-hour safety line </h1>
 
-      <p className='mb-8'>If you ever feel unsafe, we're here to help you get priority access to specially trained safety agents who will assist you with your safety issues or directly connect you to local emergency authorities, day or night.</p>
+      <p className='mb-8'>If you ever feel unsafe, we’re here to help you get priority access to specially trained safety agents who will assist you with your safety issues or directly connect you to local emergency authorities, day or night.</p>
 
       <p className='mb-8'>
           Need to reach us?
@@ -105,7 +105,7 @@ const Page = () => {
           <ol className="list-decimal pl-5">
               <li className='mb-2'>Take photos or videos of the issue, if you can.</li>
               <li className='mb-2'>Contact your Host within 72 hours of discovering the problem and describe the issue to them to see if they can resolve it.</li>
-              <li className='mb-2'>If your Host can’t resolve the issue or doesn't respond at all,<span className='underline'> contact us</span> as soon as possible. </li>
+              <li className='mb-2'>If your Host can’t resolve the issue or doesn’t respond at all,<span className='underline'> contact us</span> as soon as possible. </li>
               <li className='mb-2'>We’ll review it and if we find it’s an issue that’s supported by AirCover for guests and you’d like to leave the place, we’ll help you find a similar place to stay, depending on availability at comparable pricing. If a similar place isn’t available or you’d prefer not to rebook, we’ll give you a full or partial refund.</li>
           </ol>
       </p>
@@ -117,7 +117,7 @@ const Page = () => {
           </p>
       </div>
 
-      <p className='mb-8'>If you're a Host, learn more about <span className='underline'> AirCover for Hosts </span> and <span className='underline'> recent improvements </span>we've made.</p>
+      <p className='mb-8'>If you’re a Host, learn more about <span className='underline'> AirCover for Hosts </span> and <span className='underline'> recent improvements </span>we’ve made.</p>
 
       <div className='mt-8 mb-8'>
           <p className='mb-4'>Did this article help?</p>

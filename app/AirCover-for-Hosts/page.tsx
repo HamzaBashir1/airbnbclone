@@ -52,7 +52,7 @@ const Page = () => {
                 <div className='flex flex-wrap md:flex-nowrap gap-10'>
                 <div className='flex flex-col w-full md:w-1/2'>
                     <h1 className='font-bold text-xl'>Income loss</h1>
-                    <p>If you have to cancel Putko bookings due to guest damage, you'll be compensated for the lost income.</p>
+                    <p>If you have to cancel Putko bookings due to guest damage, you’ll be compensated for the lost income.</p>
                     <hr className="my-12 h-0.5 border-t-0 bg-neutral-500 dark:bg-white/10" />
                 </div>
 

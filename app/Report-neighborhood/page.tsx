@@ -23,7 +23,7 @@ const Page = () => {
       <div className="border p-5 mb-8">
         <p>
           <span className="icon text-xl">📄</span><span className='font-bold'>For emergencies:</span>
-          If you feel unsafe or are concerned about your or someone else's well-being, please contact local emergency services immediately.
+          If you feel unsafe or are concerned about your or someone else’s well-being, please contact local emergency services immediately.
         </p>
       </div>
 

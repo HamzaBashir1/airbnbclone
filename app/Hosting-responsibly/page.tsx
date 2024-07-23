@@ -1,8 +1,7 @@
 "use client"
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-const page = () => {
+const Page = () => {
 
     const [showThanks, setShowThanks] = useState(false);
 
@@ -85,7 +84,7 @@ const page = () => {
 
         <h1 className='text-xl font-bold mb-4'>Privacy</h1>
 
-        <p className='mb-4'>Always be mindful of your guests' privacy. Fully disclose whether there are security cameras, recording devices, or noise decibel monitors at your listing. Note that we do not allow security cameras or other recording devices inside of a listing. Make sure you are aware of and comply with applicable laws. Learn more about our approach to 
+        <p className='mb-4'>Always be mindful of your guests privacy. Fully disclose whether there are security cameras, recording devices, or noise decibel monitors at your listing. Note that we do not allow security cameras or other recording devices inside of a listing. Make sure you are aware of and comply with applicable laws. Learn more about our approach to 
             <span className='underline'>security cameras and recording devices.</span> 
         </p>
 
@@ -111,11 +110,11 @@ const page = () => {
 
         <h1 className='text-xl font-bold mb-4'>Building rules</h1>
 
-        <p className='mb-4'>Ensure you relay your building's common area rules to your guests. You may want to even notify your neighbors that you will have guests, and remind guests not to bother your neighbors (ex: don't knock on their door or buzz them to let you in).</p>
+        <p className='mb-4'>Ensure you relay your building’s common area rules to your guests. You may want to even notify your neighbors that you will have guests, and remind guests not to bother your neighbors (ex: don’t knock on their door or buzz them to let you in).</p>
 
         <h1 className='text-xl font-bold mb-4'>Smoking</h1>
 
-        <p className='mb-4'>If you don't allow smoking, we suggest posting signs to remind guests. If you do allow smoking, ensure you have ashtrays available in designated areas.</p>
+        <p className='mb-4'>If you don’t allow smoking, we suggest posting signs to remind guests. If you do allow smoking, ensure you have ashtrays available in designated areas.</p>
 
         <h1 className='text-xl font-bold mb-4'>Parking</h1>
 
@@ -123,11 +122,11 @@ const page = () => {
 
         <h1 className='text-xl font-bold mb-4'>Noise</h1>
 
-        <p className='mb-4'>Remind guests about keeping noise down. You may want to consider whether you allow babies, pets, or parties. Develop a policy about guests inviting other people over, and ensure your guests are clear about your "party policy."</p>
+        <p className='mb-4'>Remind guests about keeping noise down. You may want to consider whether you allow babies, pets, or parties. Develop a policy about guests inviting other people over, and ensure your guests are clear about your party policy.</p>
 
         <h1 className='text-xl font-bold mb-4'>Pets</h1>
 
-        <p className='mb-4'>If you allow pets, ensure guests are educated about things like local parks and local customs (ex: cleaning up after your dog). Have a backup plan in case a guest's pet upsets the neighbors (such as the number of a nearby pet hotel).</p>
+        <p className='mb-4'>If you allow pets, ensure guests are educated about things like local parks and local customs (ex: cleaning up after your dog). Have a backup plan in case a guest’s pet upsets the neighbors (such as the number of a nearby pet hotel).</p>
 
         <h1 className='text-xl font-bold mb-4'>House Rules</h1>
 
@@ -137,14 +136,14 @@ const page = () => {
 
         <h1 className='text-2xl font-bold mb-4'>Permissions</h1>
 
-        <p>Whom should I notify that I'm hosting on Putko?</p>
+        <p>Whom should I notify that I’m hosting on Putko?</p>
 
 
         <h1 className='text-2xl font-bold mb-4'>Contracts</h1>
         <p className='mb-8'>Check your HOA or Co-Op Board regulations to make sure there is no prohibition against subletting—or any other restriction against hosting. Read your lease agreement and check with your landlord if applicable. You may consider adding a rider to your contract that addresses the concerns of these parties and outlines the responsibilities and liabilities of all parties.</p>
 
         <h1 className='text-2xl font-bold mb-4'>Roommates</h1>
-        <p className='mb-8'>If you have roommates, consider a roommate agreement in writing which outlines things like how often you plan to host, how you'll ensure guests follow House Rules, and even whether you'll share revenue if that makes sense for you.</p>
+        <p className='mb-8'>If you have roommates, consider a roommate agreement in writing which outlines things like how often you plan to host, how you’ll ensure guests follow House Rules, and even whether you’ll share revenue if that makes sense for you.</p>
 
         <h1 className='text-2xl font-bold mb-4'>Neighbors</h1>
         <p className='mb-8'>Consider whether you should notify your neighbors about your plans to host, along with your plan for how to make sure your guests are not disruptive.</p>
@@ -165,7 +164,7 @@ const page = () => {
         <p className='mb-8'>If you live in rent controlled or stabilized housing, there may be special rules that apply to you. Contact your local Rent board to ask questions about this topic.</p>
 
         <h1 className='text-2xl font-bold mb-4'>Local regulations</h1>
-        <p className='mb-8'>Select a location below to read city, county, or region-specific info. If your area isn't listed, you can read <span className='underline'>general info about local regulations.</span></p>
+        <p className='mb-8'>Select a location below to read city, county, or region-specific info. If your area isn’t listed, you can read <span className='underline'>general info about local regulations.</span></p>
         <p className='underline mb-8'>Slovakia</p>
 
         <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
@@ -180,8 +179,8 @@ const page = () => {
 
         <h1 className='text-2xl font-bold mb-4'>Taxes</h1>
         <p className='mb-8'>Taxes can be complicated, and you should take time to understand the rules as they apply to you and your particular situation.</p>
-        <p className='mb-8'>Ernst and Young has prepared an overview of tax considerations for Putko Hosts relating to the US taxation of rental income: <span className='underline'>Ernst and Young’s United States "General guidance on the taxation of rental income" (English).</span> This information provides an overview of how to complete your tax return as well as some of your tax responsibilities regarding the revenue you derived from your hosting activity on Putko and other hosting platforms. The information provided by Ernst and Young relates exclusively to US income tax and does not include any guidance relating to occupancy taxes, hotel taxes, value added taxes, or other taxes.</p>
-        <p className='italic mb-8'>Disclaimer: Putko's presentation of Ernst and Young is not an endorsement. Tax advice is complicated and you should do your own diligence when receiving advice. Putko is not responsible for any tax or other advice provided by any outside entity.</p>
+        <p className='mb-8'>Ernst and Young has prepared an overview of tax considerations for Putko Hosts relating to the US taxation of rental income: <span className='underline'>Ernst and Young’s United States General guidance on the taxation of rental income (English).</span> This information provides an overview of how to complete your tax return as well as some of your tax responsibilities regarding the revenue you derived from your hosting activity on Putko and other hosting platforms. The information provided by Ernst and Young relates exclusively to US income tax and does not include any guidance relating to occupancy taxes, hotel taxes, value added taxes, or other taxes.</p>
+        <p className='italic mb-8'>Disclaimer: Putko’s presentation of Ernst and Young is not an endorsement. Tax advice is complicated and you should do your own diligence when receiving advice. Putko is not responsible for any tax or other advice provided by any outside entity.</p>
 
         <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
@@ -214,4 +213,4 @@ const page = () => {
   );
 }
 
-export default page;
+export default Page;

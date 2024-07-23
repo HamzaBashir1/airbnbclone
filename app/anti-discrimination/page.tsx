@@ -131,7 +131,7 @@ const page = () => {
                     src="/images/eighteen.png"
                 />
                 <h1 className='font-bold text-xl md:text-2xl'>Auditing reservation rejections to remove opportunities for bias</h1>
-                <p className='text-base md:text-lg'>We know that there are legitimate reasons why a reservation may not work: the Host's calendar may have changed, or the guest may have a need—like early check-in, or bringing extra guests—that the Host can’t accommodate. We are expanding our ability to analyze reservation rejections to help improve our policies and products and fight discrimination.</p>
+                <p className='text-base md:text-lg'>We know that there are legitimate reasons why a reservation may not work: the Host’s calendar may have changed, or the guest may have a need—like early check-in, or bringing extra guests—that the Host can’t accommodate. We are expanding our ability to analyze reservation rejections to help improve our policies and products and fight discrimination.</p>
             </div>
         </div>
 
