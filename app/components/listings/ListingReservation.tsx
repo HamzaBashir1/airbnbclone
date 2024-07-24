@@ -4,6 +4,10 @@ import { Range } from "react-date-range";
 import Calendar from "../inputs/Calendar";
 import Button from "../Button";
 import MessageModal from "./ListingMessage";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "");
 
 interface ListingReservationProps {
   price: number;
@@ -50,6 +54,45 @@ const ListingReservation: FC<ListingReservationProps> = ({
     onCloseModal();
   };
 
+  const handleReserve = async () => {
+    const stripe = await stripePromise;
+  
+    if (!stripe) {
+      console.error("Stripe could not be loaded.");
+      return;
+    }
+  
+    try {
+      const response = await axios.post("/api/create-checkout-session", {
+        price: totalPrice,
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      const session = response.data;
+  
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+  
+      if (result.error) {
+        console.error(result.error.message);
+      } else {
+        onSubmit(); // Call onSubmit after successful redirection
+      }
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error("Axios error:", error.message);
+      } else if (error instanceof Error) {
+        console.error("Error:", error.message);
+      } else {
+        console.error("An unknown error occurred.");
+      }
+    }
+  };
+  
   return (
     <div className="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden">
       <div className="flex flex-row items-center gap-1 p-4">
@@ -64,12 +107,12 @@ const ListingReservation: FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-        <form>
-          <Button 
-            disabled={disabled} 
-            label="Reserve" 
-            onClick={onSubmit} 
-          />
+        <form onClick={onSubmit}>
+        <Button 
+          disabled={disabled} 
+          label="Reserve" 
+          onClick={handleReserve}
+        />
         </form>
       </div>
       <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">
