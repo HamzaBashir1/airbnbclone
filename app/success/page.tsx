@@ -1,14 +1,14 @@
 import React from "react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 const SuccessPage = () => {
 
     
-  const router = useRouter();
+//   const router = useRouter();
 
-  const handleGoHome = () => {
-    router.push('/trips');
-  };
+//   const handleGoHome = () => {
+//     router.push('/trips');
+//   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -42,7 +42,7 @@ const SuccessPage = () => {
         <p className="text-gray-600 mb-8">Thank you for your payment. Your transaction was successful.</p>
         <button
           className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
-          onClick={handleGoHome}
+          
         >
           Go to Trip
         </button>
