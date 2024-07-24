@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   output: 'export',
   experimental: {
     appDir: true,
@@ -10,9 +13,6 @@ const nextConfig = {
       "avatars.githubusercontent.com", 
       "lh3.googleusercontent.com"
     ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 };
 
