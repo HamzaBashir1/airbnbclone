@@ -1,21 +1,7 @@
-"use client";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 
 const CancelPage = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Log a message or perform any action after payment is cancelled
-    console.log("Payment was cancelled!");
-
-    // Optionally, redirect to another page after a delay
-    // setTimeout(() => {
-    //   router.push('/some-page');
-    // }, 3000); // Redirect after 3 seconds
-  }, [router]);
-
-  return (
+    return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-6">
       <div className="bg-white p-10 rounded-lg shadow-md text-center max-w-lg">
         <svg
@@ -49,7 +35,7 @@ const CancelPage = () => {
         </p>
         <button
           className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
-          onClick={() => router.push('/')}
+        
         >
           Go to Home
         </button>
