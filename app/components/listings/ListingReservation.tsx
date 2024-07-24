@@ -107,13 +107,12 @@ const ListingReservation: FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-        <form onClick={onSubmit}>
         <Button 
           disabled={disabled} 
           label="Reserve" 
           onClick={handleReserve}
         />
-        </form>
+        {/* <form onClick={onSubmit}></form> */}
       </div>
       <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">
         <div>Total</div>
