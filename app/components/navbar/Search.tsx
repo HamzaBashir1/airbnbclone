@@ -101,7 +101,7 @@ const Search: FC<SearchProps> = ({}) => {
           <div
             className="
             p-2
-            bg-rose-500
+            bg-[#4FBE9FFF]
             rounded-full
             text-white
           "
