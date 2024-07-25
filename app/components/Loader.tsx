@@ -15,7 +15,7 @@ const Loader: FC<LoaderProps> = ({}) => {
       items-center 
     "
     >
-      <PuffLoader size={100} color="red" />
+      <PuffLoader size={100} color="#4FBE9FFF" />
     </div>
   )
 }

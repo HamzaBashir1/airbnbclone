@@ -24,8 +24,8 @@ const Button: FC<ButtonProps> = ({ label, onClick, disabled, outline, small, ico
           hover:opacity-80
           transition
           w-full
-         ${outline ? "bg-white" : "bg-rose-500"}
-         ${outline ? "border-black" : "bg-rose-500"}
+         ${outline ? "bg-white" : "bg-[#4FBE9FFF]"}
+         ${outline ? "border-black" : "bg-[#4FBE9FFF]"}
          ${outline ? "text-black" : "text-white"}
          ${small ? "py-1" : "py-3"}
          ${small ? "text-sm" : "text-md"}

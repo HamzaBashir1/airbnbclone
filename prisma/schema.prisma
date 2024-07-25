@@ -20,8 +20,6 @@ model User {
   accounts       Account[]
   listings       Listing[]
   reservations   Reservation[]
-  // sentMessages   Message[] @relation("sender")
-  // receivedMessages Message[] @relation("receiver")
 }
 
 model Account {
@@ -75,12 +73,9 @@ model Reservation {
 }
 
 // model Message {
-//   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-//   text       String
-//   createdAt  DateTime @default(now())
-//   updatedAt  DateTime @updatedAt
-//   sender     User     @relation("sender", fields: [senderId], references: [id], onDelete: Cascade)
-//   receiver   User     @relation("receiver", fields: [receiverId], references: [id], onDelete: Cascade)
-//   senderId   String   @db.ObjectId
+//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+//   content   String
+//   senderId  String   @db.ObjectId
 //   receiverId String   @db.ObjectId
+//   createdAt DateTime @default(now())
 // }
