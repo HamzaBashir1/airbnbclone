@@ -126,8 +126,8 @@ const ListingClient: FC<ListingClientProps> = ({
               guestCount={listing.guestCount}
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
-              listingId={listing.id}  // Corrected here
-              amenities={[]}           // Corrected here
+              listingId={listing.id}  
+              amenities={listing.amenities || []}          
             />
             <div className="order-first mb-10 md:order-last md:col-span-3">
               <ListingReservation
