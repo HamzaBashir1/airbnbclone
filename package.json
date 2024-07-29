@@ -12,7 +12,7 @@
   "dependencies": {
     "@jedrazb/react-google-places-autocomplete": "^0.0.6",
     "@next-auth/prisma-adapter": "^1.0.5",
-    "@prisma/client": "^4.16.2",
+    "@prisma/client": "^5.17.0",
     "@stripe/react-stripe-js": "^2.7.3",
     "@stripe/stripe-js": "^4.1.0",
     "@types/node": "18.15.11",
