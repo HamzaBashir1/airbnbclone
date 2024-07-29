@@ -2,14 +2,38 @@ import useCountries from "@/app/hooks/useCountries"
 import { SafeUser } from "@/app/types"
 import { FC } from "react"
 import { IconType } from "react-icons"
+import {
+  FaWifi, FaUtensils, FaTv, FaTshirt, FaDog, FaSnowflake, FaParking,
+  FaSwimmingPool, FaHotTub, FaDumbbell, FaFire, FaHamburger, FaFireExtinguisher,
+  FaUmbrellaBeach, FaShower, FaFirstAid, FaBell
+} from "react-icons/fa"
 import Avatar from "../Avatar"
 import ListingCategory from "./ListingCategory"
 import dynamic from "next/dynamic"
 
-
 const Map = dynamic(() => import("../Map"), {
   ssr: false,
 })
+
+const amenitiesData = [
+  { label: "Wi-Fi", icon: FaWifi },
+  { label: "Kitchen", icon: FaUtensils },
+  { label: "TV", icon: FaTv },
+  { label: "Washer", icon: FaTshirt },
+  { label: "Pet-friendly", icon: FaDog },
+  { label: "Air conditioning", icon: FaSnowflake },
+  { label: "Free parking", icon: FaParking },
+  { label: "Pool", icon: FaSwimmingPool },
+  { label: "Hot tub", icon: FaHotTub },
+  { label: "Gym", icon: FaDumbbell },
+  { label: "Fireplace", icon: FaFire },
+  { label: "Hair dryer", icon: FaHamburger },
+  { label: "Iron", icon: FaFireExtinguisher },
+  { label: "Beachfront", icon: FaUmbrellaBeach },
+  { label: "Shampoo", icon: FaShower },
+  { label: "First aid kit", icon: FaFirstAid },
+  { label: "Hangers", icon: FaBell },
+]
 
 interface ListingInfoProps {
   user: SafeUser
@@ -42,7 +66,11 @@ const ListingInfo: FC<ListingInfoProps> = ({
 }) => {
   const { getByValue } = useCountries()
   const coordinates = getByValue(locationValue)?.latlng
-  
+
+  const amenitiesWithIcons = amenitiesData.filter(amenity =>
+    amenities.includes(amenity.label)
+  )
+
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
@@ -69,9 +97,11 @@ const ListingInfo: FC<ListingInfoProps> = ({
       <hr />
       <div className="text-lg font-semibold">Amenities</div>
       <ul className="list-disc pl-5">
-        {amenities.length > 0 ? (
-          amenities.map((amenity, index) => (
-            <li key={index} className="text-neutral-500">{amenity}</li>
+        {amenitiesWithIcons.length > 0 ? (
+          amenitiesWithIcons.map((amenity, index) => (
+            <li key={index} className="text-neutral-500 flex items-center gap-2">
+              <amenity.icon /> {amenity.label}
+            </li>
           ))
         ) : (
           <li className="text-neutral-500">No amenities available</li>
