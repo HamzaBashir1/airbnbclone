@@ -58,7 +58,7 @@ const CountrySelect: FC<CountrySelectProps> = ({ value, onChange }) => {
           },
         })}
       />
-      <GooglePlacesAutocomplete
+      {/* <GooglePlacesAutocomplete
         apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACE_API_KEY}
         selectProps={{
           placeholder: 'Search Property Address',
@@ -74,7 +74,7 @@ const CountrySelect: FC<CountrySelectProps> = ({ value, onChange }) => {
           //     })
           // }
         }}
-      />
+      /> */}
     </div>
   )
 }
