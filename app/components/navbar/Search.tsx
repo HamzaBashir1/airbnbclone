@@ -1,10 +1,10 @@
 "use client"
 import useCountries from "@/app/hooks/useCountries"
 import useSearchModal from "@/app/hooks/useSearchModal"
-import { differenceInDays } from "date-fns"
 import { useSearchParams } from "next/navigation"
-import { FC, useMemo } from "react"
+import { FC, useMemo, useState, useEffect } from "react"
 import { BiSearch } from "react-icons/bi"
+
 interface SearchProps {}
 
 const Search: FC<SearchProps> = ({}) => {
@@ -19,50 +19,72 @@ const Search: FC<SearchProps> = ({}) => {
 
   const locationLabel = useMemo(() => {
     if (locationValue) {
-      return getByValue(locationValue as string)?.label
+      return getByValue(locationValue as string)?.label || "Destination"
     }
-    return "Anywhere"
+    return "Destination"
   }, [getByValue, locationValue])
 
-  const durationLabel = useMemo(() => {
-    if (startDate && endDate) {
+  const checkInLabel = useMemo(() => {
+    if (startDate) {
       const start = new Date(startDate as string)
-      const end = new Date(endDate as string)
-      let diff = differenceInDays(end, start)
-
-      if (diff === 0) {
-        diff = 1
-      }
-
-      return `${diff} Days`
+      return start.toLocaleDateString()
     }
+    return "Check-in"
+  }, [startDate])
 
-    return "Any Week"
-  }, [startDate, endDate])
+  const checkOutLabel = useMemo(() => {
+    if (endDate) {
+      const end = new Date(endDate as string)
+      return end.toLocaleDateString()
+    }
+    return "Check-out"
+  }, [endDate])
 
   const guestLabel = useMemo(() => {
     if (guestCount) {
-      return `${guestCount} Guests`
+      return `${guestCount} Who`
+    }
+    return "Who"
+  }, [guestCount])
+
+  const [showSecondSearch, setShowSecondSearch] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowSecondSearch(true)
+      } else {
+        setShowSecondSearch(false)
+      }
     }
 
-    return "Add Guests"
-  }, [guestCount])
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
   return (
-    <div
-      onClick={searchModal.onOpen}
-      className="
-      border-[1px]
-      w-full
-      md:w-auto
-      py-2
-      rounded-full
-      shadow-sm
-      hover:shadow-md
-      transition
-      cursor-pointer
-    "
-    >
-      <div
+    <div className="search-field-container">
+      {/* First Search Field */}
+      {!showSecondSearch && (
+        <div
+          onClick={searchModal.onOpen}
+          className="
+          border-[1px]
+          w-full
+          md:w-auto
+          py-2
+          rounded-full
+          shadow-sm
+          hover:shadow-md
+          transition
+          cursor-pointer
+        
+        "
+        >
+          <div
         className="
         flex
         flex-row
@@ -70,46 +92,100 @@ const Search: FC<SearchProps> = ({}) => {
         justify-between
       "
       >
-        <div className="text-sm font-semibold px-6">{locationLabel}</div>
-        <div
-          className="
-        hidden
-        sm:block
-        text-sm
-        font-semibold
-        px-6
-        border-x-[1px]
-        flex-1
-        text-center
-        "
-        >
-          {durationLabel}
-        </div>
-        <div
-          className="
-          text-sm
-          pl-6
-          pr-2
-          text-gray-600
-          flex
-          flex-row
-          items-center
-          gap-3
-        "
-        >
-          <div className="hidden sm:block">{guestLabel}</div>
+          <div className="text-sm font-semibold px-6">{locationLabel}</div>
           <div
             className="
-            p-2
-            bg-[#4FBE9FFF]
-            rounded-full
-            text-white
+            hidden
+            sm:block
+            text-sm
+            font-semibold
+            px-6
+            border-x-[1px]
+            flex-1
+            text-center
           "
           >
-            <BiSearch size={18} />
+            {checkInLabel} - {checkOutLabel}
+          </div>
+          <div
+            className="
+            text-sm
+            pl-6
+            pr-2
+            text-gray-600
+            flex
+            flex-row
+            items-center
+            gap-3
+          "
+          >
+            <div className="hidden sm:block">{guestLabel}</div>
+            <div
+              className="
+              p-2
+              bg-[#4FBE9FFF]
+              rounded-full
+              text-white
+            "
+            >
+              <BiSearch size={18} />
+            </div>
+          </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* Second Search Field */}
+      {showSecondSearch && (
+        <div
+          onClick={searchModal.onOpen}
+          className="
+          border-[1px]
+          w-full
+          md:w-auto
+          py-2
+          rounded-full
+          shadow-sm
+          hover:shadow-md
+          transition
+          cursor-pointer
+          flex flex-row items-center justify-between
+        "
+        >
+          <div className="text-sm font-semibold px-6">Anywhere</div>
+          <div
+            className="
+            hidden
+            sm:block
+            text-sm
+            font-semibold
+            px-6
+            border-x-[1px]
+            flex-1
+            text-center
+          "
+          >
+            Any Week
+          </div>
+          <div
+            className="
+            text-sm
+            pl-6
+            pr-2
+            text-gray-600
+            flex
+            flex-row
+            items-center
+            gap-3
+          "
+          >
+            <div className="hidden sm:block">Guest</div>
+            <div className="p-2 bg-[#4FBE9FFF] rounded-full text-white">
+              <BiSearch size={18} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

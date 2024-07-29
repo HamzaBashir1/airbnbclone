@@ -1,5 +1,5 @@
 "use client"
-import { FC, useRef, useState } from "react"
+import { FC, useRef } from "react"
 import Container from "../Container"
 import CategoryBox from "../CategoryBox"
 import { usePathname, useSearchParams } from "next/navigation"
@@ -45,7 +45,6 @@ const Categories: FC<CategoriesProps> = ({}) => {
   const category = params?.get("category")
   const pathname = usePathname()
   const containerRef = useRef<HTMLDivElement>(null)
-  const [hasScrolledRight, setHasScrolledRight] = useState(false)
 
   const isMainPage = pathname === "/"
 
@@ -53,33 +52,12 @@ const Categories: FC<CategoriesProps> = ({}) => {
     return null
   }
 
-  const scrollLeft = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -200, behavior: "smooth" })
-    }
-  }
-
-  const scrollRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ left: 200, behavior: "smooth" })
-      setHasScrolledRight(true)
-    }
-  }
-
   return (
     <Container>
-      <div className="relative">
-        {hasScrolledRight && (
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-200 p-2 rounded-full shadow-md hover:bg-gray-300"
-          >
-            &lt;
-          </button>
-        )}
+      <div className="">
         <div
           ref={containerRef}
-          className=" flex flex-row items-center justify-between overflow-x-auto max-w-full no-scrollbar"
+          className="flex flex-row items-center justify-between overflow-x-auto max-w-full no-scrollbar"
         >
           {categories.map((item) => (
             <CategoryBox
@@ -91,12 +69,6 @@ const Categories: FC<CategoriesProps> = ({}) => {
             />
           ))}
         </div>
-        <button
-          onClick={scrollRight}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-200 p-2 rounded-full shadow-md hover:bg-gray-300"
-        >
-          &gt;
-        </button>
       </div>
     </Container>
   )

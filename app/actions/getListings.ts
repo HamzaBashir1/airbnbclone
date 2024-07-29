@@ -9,6 +9,7 @@ export interface IListingsParams {
   endDate?: string
   locationValue?: string
   category?: string
+  amenities?: string[] // Change amenities to an array of strings for better handling
 }
 
 export default async function getListings(params: IListingsParams) {
@@ -22,6 +23,7 @@ export default async function getListings(params: IListingsParams) {
       endDate,
       locationValue,
       category,
+      amenities,
     } = params
 
     let query: any = {}
@@ -48,6 +50,13 @@ export default async function getListings(params: IListingsParams) {
     }
     if (locationValue) {
       query.locationValue = locationValue
+    }
+
+    // Handle amenities if provided
+    if (amenities && amenities.length > 0) {
+      query.amenities = {
+        hasSome: amenities, // Assumes amenities is an array of strings
+      }
     }
 
     if (startDate && endDate) {
@@ -83,6 +92,7 @@ export default async function getListings(params: IListingsParams) {
 
     return safeListings
   } catch (error: any) {
+    console.error("Error fetching listings:", error)
     throw new Error(error)
   }
 }

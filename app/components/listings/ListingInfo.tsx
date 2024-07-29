@@ -6,6 +6,7 @@ import Avatar from "../Avatar"
 import ListingCategory from "./ListingCategory"
 import dynamic from "next/dynamic"
 
+
 const Map = dynamic(() => import("../Map"), {
   ssr: false,
 })
@@ -24,6 +25,8 @@ interface ListingInfoProps {
       }
     | undefined
   locationValue: string
+  listingId: string
+  amenities: string[] // Add amenities to props
 }
 
 const ListingInfo: FC<ListingInfoProps> = ({
@@ -34,9 +37,12 @@ const ListingInfo: FC<ListingInfoProps> = ({
   bathroomCount,
   category,
   locationValue,
+  listingId,
+  amenities = [] // Destructure amenities from props
 }) => {
   const { getByValue } = useCountries()
   const coordinates = getByValue(locationValue)?.latlng
+  
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
@@ -50,7 +56,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
           <div>{bathroomCount} bathrooms</div>
         </div>
       </div>
-   .   <hr />
+      <hr />
       {category && (
         <ListingCategory
           icon={category.icon}
@@ -61,7 +67,19 @@ const ListingInfo: FC<ListingInfoProps> = ({
       <hr />
       <div className="text-lg font-light text-neutral-500">{description}</div>
       <hr />
+      <div className="text-lg font-semibold">Amenities</div>
+      <ul className="list-disc pl-5">
+        {amenities.length > 0 ? (
+          amenities.map((amenity, index) => (
+            <li key={index} className="text-neutral-500">{amenity}</li>
+          ))
+        ) : (
+          <li className="text-neutral-500">No amenities available</li>
+        )}
+      </ul>
+      <hr />
       <Map center={coordinates} />
+      {/* <ListingReviews listingId={listingId} /> */}
     </div>
   )
 }

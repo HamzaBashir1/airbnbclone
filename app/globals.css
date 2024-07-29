@@ -24,6 +24,15 @@ body,
   width: 100% !important;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 @layer components{
   .container{
       @apply max-w-full w-[1440px] px-5 mx-auto;

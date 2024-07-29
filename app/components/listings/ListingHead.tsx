@@ -5,12 +5,13 @@ import { FC } from "react"
 import Heading from "../Heading"
 import Image from "next/image"
 import HeartButton from "../HeartButton"
-import ListingInfo from "./ListingInfo"
+import { Carousel } from 'react-responsive-carousel'
+import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 interface ListingHeadProps {
   title: string
   locationValue: string
-  imageSrc: string
+  imageSrc: string[] // Array of strings for multiple images
   id: string
   currentUser?: SafeUser | null
 }
@@ -31,12 +32,25 @@ const ListingHead: FC<ListingHeadProps> = ({
         subtitle={`${location?.region}, ${location?.label}`}
       />
       <div className="w-full h-[60vh] overflow-hidden rounded-xl relative">
-        <Image
-          alt="Image"
-          src={imageSrc}
-          fill
-          className="object-cover w-full"
-        />
+        <Carousel
+          showArrows={true}
+          infiniteLoop={true}
+          showThumbs={false}
+          showStatus={false}
+          autoPlay={true}
+          interval={5000}
+        >
+          {imageSrc.map((src, index) => (
+            <div key={index} className="w-full h-[60vh]">
+              <Image
+                alt={`Image ${index}`}
+                src={src} // Each src should be a string
+                fill
+                className="object-cover w-full h-full"
+              />
+            </div>
+          ))}
+        </Carousel>
         <div className="absolute top-5 right-5">
           <HeartButton listingId={id} currentUser={currentUser} />
         </div>
