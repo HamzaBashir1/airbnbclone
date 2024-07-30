@@ -17,7 +17,7 @@ const socialLinks: SocialLink[] = [
     icon: <AiFillYoutube className='group-hover:text-white w-4 h-5' />,
   },
   {
-    path: "https://www.facebook.com/profile.php?viewas=100000686899395&id=61563346348433",
+    path: "https://www.facebook.com/profile.php?id=61563346348433",
     icon: <AiFillFacebook className='group-hover:text-white w-4 h-5' />,
   },
   // {
