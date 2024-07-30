@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import putko from '../../public/images/putko.png';
 import { RiLinkedinFill } from 'react-icons/ri';
-import { AiFillYoutube, AiFillGithub, AiOutlineInstagram } from 'react-icons/ai';
+import { AiFillYoutube, AiFillGithub, AiOutlineInstagram, AiFillFacebook } from 'react-icons/ai';
 
 interface SocialLink {
   path: string;
@@ -13,21 +13,21 @@ interface SocialLink {
 
 const socialLinks: SocialLink[] = [
   {
-    path: "https://www.youtube.com/",
+    path: "https://www.youtube.com/channel/UC-U0einusd8kyhjC2HBexUg",
     icon: <AiFillYoutube className='group-hover:text-white w-4 h-5' />,
   },
   {
-    path: "https://github.com/",
-    icon: <AiFillGithub className='group-hover:text-white w-4 h-5' />,
+    path: "https://www.facebook.com/profile.php?viewas=100000686899395&id=61563346348433",
+    icon: <AiFillFacebook className='group-hover:text-white w-4 h-5' />,
   },
-  {
-    path: "https://www.instagram.com/",
-    icon: <AiOutlineInstagram className='group-hover:text-white w-4 h-5' />,
-  },
-  {
-    path: "https://www.linkedin.com/",
-    icon: <RiLinkedinFill className='group-hover:text-white w-4 h-5' />,
-  },
+  // {
+  //   path: "https://www.instagram.com/",
+  //   icon: <AiOutlineInstagram className='group-hover:text-white w-4 h-5' />,
+  // },
+  // {
+  //   path: "https://www.linkedin.com/",
+  //   icon: <RiLinkedinFill className='group-hover:text-white w-4 h-5' />,
+  // },
 ];
 
 interface QuickLink {
