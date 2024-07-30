@@ -10,6 +10,7 @@ import getCurrentUser from "@/app/actions/getCurrentUser"
 import RentModal from "@/components/modals/RentModal"
 import SearchModal from "@/components/modals/SearchModal"
 import Footer from "./Footer/Footer"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
   title: "Putko",
@@ -31,6 +32,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+      <SpeedInsights />
         <ClientOnly>
           <ToasterProvider />
           <SearchModal />
