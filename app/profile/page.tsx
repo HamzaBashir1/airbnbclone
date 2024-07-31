@@ -13,9 +13,9 @@ const Page: FC = () => {
   const [isEditingEmergencyContact, setIsEditingEmergencyContact] = useState<boolean>(false);
 
   // State for personal details
-  const [legalName, setLegalName] = useState<string>("Hamza Bashir");
+  const [legalName, setLegalName] = useState<string>("please provide name");
   const [preferredName, setPreferredName] = useState<string>("Not Provided");
-  const [phoneNumber, setPhoneNumber] = useState<string>("+4467890987");
+  const [phoneNumber, setPhoneNumber] = useState<string>("Number Not Provided");
   const [address, setAddress] = useState<string>("Not Provided");
 
   // State for emergency contact details
