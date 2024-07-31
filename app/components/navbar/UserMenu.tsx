@@ -102,6 +102,10 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
             {currentUser ? (
               <>
                 <MenuItem
+                  onClick={() => router.push("/profile")}
+                  label="Profile"
+                />
+                <MenuItem
                   onClick={() => router.push("/message")}
                   label="Messages"
                 />
