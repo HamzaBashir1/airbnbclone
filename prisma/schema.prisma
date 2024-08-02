@@ -20,6 +20,7 @@ model User {
   accounts       Account[]
   listings       Listing[]
   reservations   Reservation[]
+  reviews        Review[]
 }
 
 model Account {
@@ -55,6 +56,7 @@ model Listing {
   locationValue String
   userId        String   @db.ObjectId
   price         Int
+  reviews       Review[]
 
   user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
@@ -73,22 +75,14 @@ model Reservation {
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
 
-// model Review {
-//   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-//   userId     String   @db.ObjectId
-//   listingId  String   @db.ObjectId
-//   rating     Int      // Rating from 1 to 5
-//   review     String
-//   createdAt  DateTime @default(now())
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  listingId String   @db.ObjectId
+  userId    String   @db.ObjectId
+  rating    Int
+  review    String
+  createdAt DateTime @default(now())
 
-//   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
-// }
-
-// model Message {
-//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-//   content   String
-//   senderId  String   @db.ObjectId
-//   receiverId String   @db.ObjectId
-//   createdAt DateTime @default(now())
-// }
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

@@ -1,15 +1,16 @@
-import prisma from "@/app/lib/prismadb"
+import prisma from "@/app/lib/prismadb";
 
 export interface IListingsParams {
-  userId?: string
-  guestCount?: number
-  roomCount?: number
-  bathroomCount?: number
-  startDate?: string
-  endDate?: string
-  locationValue?: string
-  category?: string
-  amenities?: string[] // Change amenities to an array of strings for better handling
+  userId?: string;
+  guestCount?: number;
+  roomCount?: number;
+  bathroomCount?: number;
+  startDate?: string;
+  endDate?: string;
+  locationValue?: string;
+  category?: string;
+  amenities?: string[]; // Change amenities to an array of strings for better handling
+  reviews?: string[];
 }
 
 export default async function getListings(params: IListingsParams) {
@@ -24,39 +25,39 @@ export default async function getListings(params: IListingsParams) {
       locationValue,
       category,
       amenities,
-    } = params
+    } = params;
 
-    let query: any = {}
+    let query: any = {};
     if (userId) {
-      query.userId = userId
+      query.userId = userId;
     }
     if (category) {
-      query.category = category
+      query.category = category;
     }
     if (roomCount) {
       query.roomCount = {
         gte: +roomCount,
-      }
+      };
     }
     if (guestCount) {
       query.guestCount = {
         gte: +guestCount,
-      }
+      };
     }
     if (bathroomCount) {
       query.bathroomCount = {
         gte: +bathroomCount,
-      }
+      };
     }
     if (locationValue) {
-      query.locationValue = locationValue
+      query.locationValue = locationValue;
     }
 
     // Handle amenities if provided
     if (amenities && amenities.length > 0) {
       query.amenities = {
         hasSome: amenities, // Assumes amenities is an array of strings
-      }
+      };
     }
 
     if (startDate && endDate) {
@@ -75,24 +76,27 @@ export default async function getListings(params: IListingsParams) {
             ],
           },
         },
-      }
+      };
     }
 
     const listings = await prisma.listing.findMany({
       where: query,
+      include: {
+        reviews: true, // Include reviews in the response
+      },
       orderBy: {
         createdAt: "desc",
       },
-    })
+    });
 
     const safeListings = listings.map((listing) => ({
       ...listing,
       createdAt: listing.createdAt.toISOString(),
-    }))
+    }));
 
-    return safeListings
+    return safeListings;
   } catch (error: any) {
-    console.error("Error fetching listings:", error)
-    throw new Error(error)
+    console.error("Error fetching listings:", error);
+    throw new Error(error);
   }
 }
