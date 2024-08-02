@@ -22,7 +22,7 @@ const initialDateRange = {
 
 interface ListingClientProps {
   reservations?: SafeReservation[]
-  listing: SafeListing & { user: SafeUser }
+  listing: SafeListing & { user: SafeUser; reviews?: { id: string; rating: number; review: string; user?: { id: string; name?: string }; }[] }; // Added optional reviews
   currentUser?: SafeUser | null
 }
 
@@ -127,7 +127,8 @@ const ListingClient: FC<ListingClientProps> = ({
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
               listingId={listing.id}  
-              amenities={listing.amenities || []}          
+              amenities={listing.amenities || []} 
+              reviews={listing.reviews || []}          
             />
             <div className="order-first mb-10 md:order-last md:col-span-3">
               <ListingReservation
