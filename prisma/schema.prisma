@@ -21,8 +21,7 @@ model User {
   listings       Listing[]
   reservations   Reservation[]
   reviews        Review[]
-
-  // Message Message[]
+  messages       Message[]
 }
 
 model Account {
@@ -31,13 +30,13 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.String
-  access_token      String? @db.String
-  expires_at        Int?
-  token_type        String?
+  refreshToken      String? @db.String
+  accessToken       String? @db.String
+  expiresAt         Int?
+  tokenType         String?
   scope             String?
-  id_token          String? @db.String
-  session_state     String?
+  idToken           String? @db.String
+  sessionState      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -45,26 +44,25 @@ model Account {
 }
 
 model Listing {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
   title         String
   description   String
   imageSrc      String[]
-  createdAt     DateTime @default(now())
+  createdAt     DateTime     @default(now())
   category      String
   roomCount     Int
   bathroomCount Int
   guestCount    Int
   amenities     String[]
   locationValue String
-  userId        String   @db.ObjectId
+  userId        String       @db.ObjectId
   price         Int
   panorama      String?
   reviews       Review[]
   reservations  Reservation[]
+  chats         Chat[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  // Chat Chat[]
 }
 
 model Reservation {
@@ -92,22 +90,22 @@ model Review {
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-// model Chat {
-//   id        String    @id @default(auto()) @map("_id") @db.ObjectId
-//   listingId String    @db.ObjectId
-//   users     String[]  @db.ObjectId
-//   messages  Message[]
+model Chat {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  listingId String    @db.ObjectId
+  users     String[]  @db.ObjectId
+  messages  Message[]
 
-//   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
-// }
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
 
-// model Message {
-//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-//   chatId    String   @db.ObjectId
-//   senderId  String   @db.ObjectId
-//   content   String
-//   createdAt DateTime @default(now())
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  chatId    String   @db.ObjectId
+  senderId  String   @db.ObjectId
+  content   String
+  createdAt DateTime @default(now())
 
-//   chat  Chat  @relation(fields: [chatId], references: [id], onDelete: Cascade)
-//   sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
-// }
+  chat  Chat  @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
+}
