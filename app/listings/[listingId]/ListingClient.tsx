@@ -128,7 +128,8 @@ const ListingClient: FC<ListingClientProps> = ({
               locationValue={listing.locationValue}
               listingId={listing.id}  
               amenities={listing.amenities || []} 
-              reviews={listing.reviews || []}          
+              reviews={listing.reviews || []}  
+              panorama={listing.panorama || ""}        
             />
             <div className="order-first mb-10 md:order-last md:col-span-3">
               <ListingReservation

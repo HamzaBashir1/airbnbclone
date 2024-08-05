@@ -1,16 +1,33 @@
-"use client";
-
-import useCountries from "@/app/hooks/useCountries";
+"use client"
 import { useState, useEffect } from "react";
 import { SafeUser } from "@/app/types";
 import { FC } from "react";
 import { IconType } from "react-icons";
-import { FaWifi, FaUtensils, FaTv, FaTshirt, FaDog, FaSnowflake, FaParking, FaSwimmingPool, FaHotTub, FaDumbbell, FaFire, FaHamburger, FaFireExtinguisher, FaUmbrellaBeach, FaShower, FaFirstAid, FaBell } from "react-icons/fa";
+import {
+  FaWifi,
+  FaUtensils,
+  FaTv,
+  FaTshirt,
+  FaDog,
+  FaSnowflake,
+  FaParking,
+  FaSwimmingPool,
+  FaHotTub,
+  FaDumbbell,
+  FaFire,
+  FaHamburger,
+  FaFireExtinguisher,
+  FaUmbrellaBeach,
+  FaShower,
+  FaFirstAid,
+  FaBell,
+} from "react-icons/fa";
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
 import dynamic from "next/dynamic";
 import StarRating from "./starrating";
 import toast from "react-hot-toast";
+import useCountries from "@/app/hooks/useCountries";
 
 const Map = dynamic(() => import("../Map"), { ssr: false });
 
@@ -57,6 +74,7 @@ interface ListingInfoProps {
       name?: string; // Make name optional
     };
   }[];
+  panorama?: string;
 }
 
 const ListingInfo: FC<ListingInfoProps> = ({
@@ -70,6 +88,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
   listingId,
   amenities = [],
   reviews = [],
+  panorama,
 }) => {
   const { getByValue } = useCountries();
   const coordinates = getByValue(locationValue)?.latlng;
@@ -85,6 +104,29 @@ const ListingInfo: FC<ListingInfoProps> = ({
   const [submitError, setSubmitError] = useState<string | null>(null); // Error state for validation
   const [loading, setLoading] = useState(true); // Add loading state
   const [showAllReviews, setShowAllReviews] = useState(false); // State to toggle reviews
+
+  useEffect(() => {
+    console.log("Panorama URL:", panorama); // Debug log
+
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(`/api/reviews?listingId=${listingId}`);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Fetched reviews:", data); // Log the fetched reviews
+          setReviews(data);
+        } else {
+          setError("Failed to fetch reviews");
+        }
+      } catch (err) {
+        setError("An error occurred while fetching reviews");
+      } finally {
+        setLoading(false); // Set loading to false once data is fetched or an error occurs
+      }
+    };
+
+    fetchReviews();
+  }, [listingId, panorama]);
 
   const handleSubmitReview = async () => {
     setSubmitError(null); // Reset submit error
@@ -121,29 +163,8 @@ const ListingInfo: FC<ListingInfoProps> = ({
     }
   };
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await fetch(`/api/reviews?listingId=${listingId}`);
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Fetched reviews:", data); // Log the fetched reviews
-          setReviews(data);
-        } else {
-          setError("Failed to fetch reviews");
-        }
-      } catch (err) {
-        setError("An error occurred while fetching reviews");
-      } finally {
-        setLoading(false); // Set loading to false once data is fetched or an error occurs
-      }
-    };
-
-    fetchReviews();
-  }, [listingId]);
-
   return (
-    <div className="col-span-4 flex flex-col gap-8">     
+    <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
         <div className="text-xl font-semibold flex flex-row items-center gap-2">
           <div>Hosted by {user?.name}</div>
@@ -156,6 +177,18 @@ const ListingInfo: FC<ListingInfoProps> = ({
         </div>
       </div>
       <hr />
+      {panorama && (
+        <div className="mt-6">
+          <a
+            href={panorama}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          >
+            View Panorama
+          </a>
+        </div>
+      )}
       {category && (
         <ListingCategory
           icon={category.icon}

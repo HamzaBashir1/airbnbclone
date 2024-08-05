@@ -9,8 +9,9 @@ export interface IListingsParams {
   endDate?: string;
   locationValue?: string;
   category?: string;
-  amenities?: string[]; // Change amenities to an array of strings for better handling
+  amenities?: string[];
   reviews?: string[];
+  panorama?: string;
 }
 
 export default async function getListings(params: IListingsParams) {
@@ -25,6 +26,7 @@ export default async function getListings(params: IListingsParams) {
       locationValue,
       category,
       amenities,
+      panorama
     } = params;
 
     let query: any = {};
@@ -52,11 +54,13 @@ export default async function getListings(params: IListingsParams) {
     if (locationValue) {
       query.locationValue = locationValue;
     }
+    if (panorama) {
+      query.panorama = panorama;
+    }
 
-    // Handle amenities if provided
     if (amenities && amenities.length > 0) {
       query.amenities = {
-        hasSome: amenities, // Assumes amenities is an array of strings
+        hasSome: amenities,
       };
     }
 
@@ -82,7 +86,7 @@ export default async function getListings(params: IListingsParams) {
     const listings = await prisma.listing.findMany({
       where: query,
       include: {
-        reviews: true, // Include reviews in the response
+        reviews: true,
       },
       orderBy: {
         createdAt: "desc",

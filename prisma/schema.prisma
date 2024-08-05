@@ -21,6 +21,8 @@ model User {
   listings       Listing[]
   reservations   Reservation[]
   reviews        Review[]
+
+  // Message Message[]
 }
 
 model Account {
@@ -56,10 +58,13 @@ model Listing {
   locationValue String
   userId        String   @db.ObjectId
   price         Int
+  panorama      String?
   reviews       Review[]
+  reservations  Reservation[]
 
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  reservations Reservation[]
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Chat Chat[]
 }
 
 model Reservation {
@@ -86,3 +91,23 @@ model Review {
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+// model Chat {
+//   id        String    @id @default(auto()) @map("_id") @db.ObjectId
+//   listingId String    @db.ObjectId
+//   users     String[]  @db.ObjectId
+//   messages  Message[]
+
+//   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+// }
+
+// model Message {
+//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+//   chatId    String   @db.ObjectId
+//   senderId  String   @db.ObjectId
+//   content   String
+//   createdAt DateTime @default(now())
+
+//   chat  Chat  @relation(fields: [chatId], references: [id], onDelete: Cascade)
+//   sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
+// }

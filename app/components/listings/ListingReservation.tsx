@@ -3,9 +3,11 @@ import { FC, useState } from "react";
 import { Range } from "react-date-range";
 import Calendar from "../inputs/Calendar";
 import Button from "../Button";
-import MessageModal from "./ListingMessage";
+
+
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import MessageModal from "./ListingMessage";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "");
 
@@ -18,6 +20,7 @@ interface ListingReservationProps {
   disabled?: boolean;
   disabledDates: Date[];
   userId?: string; // Make userId optional
+  chatId?: string; 
 }
 
 const ListingReservation: FC<ListingReservationProps> = ({
@@ -29,6 +32,7 @@ const ListingReservation: FC<ListingReservationProps> = ({
   disabled,
   disabledDates,
   userId,
+  chatId,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState<string>("");
@@ -92,7 +96,7 @@ const ListingReservation: FC<ListingReservationProps> = ({
       }
     }
   };
-  
+
   return (
     <div className="bg-white rounded-xl border-[1px] border-neutral-200 overflow-hidden">
       <div className="flex flex-row items-center gap-1 p-4">
@@ -107,12 +111,12 @@ const ListingReservation: FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-      <form onClick={onSubmit}>
-        <Button 
-          disabled={disabled} 
-          label="Reserve" 
-          onClick={handleReserve}
-        />
+        <form onSubmit={(e) => e.preventDefault()}>
+          <Button 
+            disabled={disabled} 
+            label="Reserve" 
+            onClick={handleReserve}
+          />
         </form>
       </div>
       <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">
@@ -127,7 +131,9 @@ const ListingReservation: FC<ListingReservationProps> = ({
         onClose={onCloseModal}
         message={message}
         handleMessageChange={handleMessageChange}
-        handleSendMessage={handleSendMessage}
+        handleSendMessage={handleSendMessage} 
+        userId={userId || ""} 
+        chatId={chatId}
       />
     </div>
   );
