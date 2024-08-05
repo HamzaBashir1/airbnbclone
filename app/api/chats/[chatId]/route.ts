@@ -1,25 +1,28 @@
+import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { chatId } = req.query;
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const chatId = searchParams.get('chatId');
 
-  if (req.method === 'GET') {
-    try {
-      const messages = await prisma.message.findMany({
-        where: { chatId: chatId as string },
-        include: { sender: true },
-        orderBy: { createdAt: 'desc' },
-      });
+  if (!chatId) {
+    return NextResponse.json({ error: 'Invalid or missing chatId' }, { status: 400 });
+  }
 
-      res.status(200).json(messages);
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch messages' });
-    }
-  } else {
-    res.setHeader('Allow', ['GET']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+  try {
+    const messages = await prisma.message.findMany({
+      where: { chatId },
+      include: { sender: true },
+      orderBy: { createdAt: 'desc' },
+    });
+    return NextResponse.json(messages, { status: 200 });
+  } catch (error) {
+    console.error('Failed to fetch messages:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json({ error: 'Failed to fetch messages', message: errorMessage }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
