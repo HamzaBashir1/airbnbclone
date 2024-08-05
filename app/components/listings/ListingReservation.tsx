@@ -3,8 +3,6 @@ import { FC, useState } from "react";
 import { Range } from "react-date-range";
 import Calendar from "../inputs/Calendar";
 import Button from "../Button";
-
-
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import MessageModal from "./ListingMessage";
@@ -19,8 +17,7 @@ interface ListingReservationProps {
   onSubmit: () => void;
   disabled?: boolean;
   disabledDates: Date[];
-  userId?: string; // Make userId optional
-  chatId?: string; 
+  userId?: string; // Added userId as a prop
 }
 
 const ListingReservation: FC<ListingReservationProps> = ({
@@ -31,8 +28,7 @@ const ListingReservation: FC<ListingReservationProps> = ({
   onSubmit,
   disabled,
   disabledDates,
-  userId,
-  chatId,
+  userId, // Destructure userId
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState<string>("");
@@ -52,6 +48,7 @@ const ListingReservation: FC<ListingReservationProps> = ({
   const handleSendMessage = () => {
     if (userId) {
       console.log(`Sending message to user ID ${userId}: ${message}`);
+      // Send message logic here
     } else {
       console.log("User ID is not defined.");
     }
@@ -60,27 +57,31 @@ const ListingReservation: FC<ListingReservationProps> = ({
 
   const handleReserve = async () => {
     const stripe = await stripePromise;
-  
+
     if (!stripe) {
       console.error("Stripe could not be loaded.");
       return;
     }
-  
+
     try {
-      const response = await axios.post("/api/create-checkout-session", {
-        price: totalPrice,
-      }, {
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axios.post(
+        "/api/create-checkout-session",
+        {
+          price: totalPrice,
         },
-      });
-  
+        {
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }
+      );
+
       const session = response.data;
-  
+
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
       });
-  
+
       if (result.error) {
         console.error(result.error.message);
       } else {
@@ -132,8 +133,6 @@ const ListingReservation: FC<ListingReservationProps> = ({
         message={message}
         handleMessageChange={handleMessageChange}
         handleSendMessage={handleSendMessage} 
-        userId={userId || ""} 
-        chatId={chatId}
       />
     </div>
   );
